@@ -13,63 +13,50 @@ fun main(){
     println("Chương trình quản lý sinh viên")
 
    do {
-       println("Nhập tên sinh viên: ")
-       s= readLine()
-       if (s!= null){
-           tensv=s
-       }
-
-       println("Nhập mã sinh viên: ")
-       s= readLine()
-       if (s!= null){
-           mssv=s
-       }
-
-       do {
-           println("Nhập điểm sinh viên: ")
-           s = readLine()
-           if (s== null) {
-               println("Điểm không được để trống")
-           } else {
-               try {
-                   diem = s.toFloat()
-                   break
-               } catch (e: NumberFormatException) {
-                   println("Điểm phải là một số")
-               }
-           }
-       } while (true)
-
-       println("Bạn đã tốt nghiệp chưa(true/false)?")
-       s= readLine()
-       if (s!= null){
-           datotnghiep=s.toBoolean()
-       }
-       println("Nhập tuổi sinh viên: ")
-       s= readLine()
-       if (s!= null){
-           tuoi=s.toInt()
-       }
-
-       var sv=SinhVien(tensv, mssv, diem)
-       listSv.add(sv)
-
-
-
-       println("Danh sách sinh viên: ")
-       for (i in listSv.indices){
-           println("Sinh viên thứ $i: ${listSv.get(i).getThongTin()}")
-       }
-
        println("Chọn chức năng: ")
-       println("1. Sửa sinh viên")
-       println("2. Xóa sinh viên")
-       println("3. Tiếp tục")
+       println("1. Thêm sinh viên")
+       println("2. Sửa sinh viên")
+       println("3. Xóa sinh viên")
+       println("4.Xem danh sách sinh viên")
+       println("5. Tiếp tục")
+       println("Chọn chức năng: ")
        s = readLine()
 
        when (s) {
-           "1" -> {
-               println("Nhập số thứ tự của sinh viên sửa: ")
+           "1"->{
+               println("Nhập tên sinh viên: ")
+               s= readLine()
+               if (s!= null){
+                   tensv=s
+               }
+
+               println("Nhập mã sinh viên: ")
+               s= readLine()
+               if (s!= null){
+                   mssv=s
+               }
+
+               do {
+                   println("Nhập điểm sinh viên: ")
+                   s = readLine()
+                   if (s== null) {
+                       println("Điểm không được để trống")
+                   } else {
+                       try {
+                           diem = s.toFloat()
+                           break
+                       } catch (e: NumberFormatException) {
+                           println("Điểm phải là một số")
+                       }
+                   }
+               } while (true)
+
+
+               var sv=SinhVien(tensv, mssv, diem)
+               listSv.add(sv)
+           }
+           "2" -> {
+               println("Nhập mã sinh viên sửa: ")
                s= readLine()
                if (s!= null){
                    delput=s.toInt()
@@ -107,8 +94,8 @@ fun main(){
                    println("Sinh viên không tồn tại.")
                }
            }
-           "2" -> {
-               println("Nhập số thứ tự của sinh viên cần xóa: ")
+           "3" -> {
+               println("Nhập mã sinh viên cần xóa: ")
                 s = readLine()
                if (s!= null){
                    delput=s.toInt()
@@ -120,7 +107,13 @@ fun main(){
                    println("Sinh viên không tồn tại.")
                }
            }
-           "3" -> {
+           "4"->{
+               println("Danh sách sinh viên: ")
+               for (i in listSv.indices){
+                   println("Sinh viên thứ $i: ${listSv.get(i).getThongTin()}")
+               }
+           }
+           "5" -> {
                continue
            }
            else -> {
